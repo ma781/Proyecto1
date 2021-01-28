@@ -65,3 +65,25 @@ Para una correcta instalacion del robot Pepper se debe seguir los siguientes pas
     gedit ~/.bashrc
     export ROS_PEPPER_SIM_WS=<path_to_your_pepper_sim_ws_folder>
   
+#### Creacion de Ambiente de Simulacion
+  Debido a que este proyecto esta orientado a un ambiente poblado por humanos, es necesario poner al robot en un mapa con personas.
+ 
+  Se hace uso del mapa ISCA MUSEUM , el cual viene precagado en gazebo 9. Se busca este mapa en la pestana "Insert" para despues salvarlo y guardarlo en la carpeta
+ 
+    ~/pepper_sim_ws/src/pepper_virtual/pepper_gazebo_plugin/worlds
+    
+   Modificamos el launch: Abrimos el archivo ubicado en 
+ 
+    /pepper_sim_ws/src/pepper_virtual/pepper_gazebo_plugin/launch
+     $gedit pepper_gazebo_plugin_in_office_CPU.launch
+
+   Luego modificamos el argumento tal y como se ve en la linea siguiente, este paso se hace con el fin de llamar al mundo ISCA MUSEUM cada vez que ejecutemos nuestro programa.  
+ 
+    <arg name="world_name" value="$(find pepper_gazebo_plugin)/worlds/museum.world"/>
+
+   Finalmente guardamos los cambios con el nombre "pepper_gazebo_plugin_museum.launch"
+   De la misma forma como se agrego el mundo ISCA MUSEUM se puede agregar los avatar (Personas) en el mundo, los cuales puedes ser ubicados de la manera que el usuario guste.
+A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEUM junto con las Personas. 
+
+    $roslaunch pepper_gazebo_plugin pepper_gazebo_plugin_museum.launch
+ 
