@@ -91,6 +91,8 @@ A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEU
    Rqt es una herramienta GUI principal para ROS. Este plugins que pueden ser configurado en cualquier configuración visual y cualquier número de vistas predefinidas. Para empezar ejecutamos el plugin Robot Steering. Lo que obtenemos es dos deslizadores, que representan la moción lineal y rotacional que queremos que tenga nuestro robot. En la parte superior del plugin, vemos una caja de texto con `/cmd_vel`. Alli pondremos `pepper/cmd_vel`. Representa el nombre del tema al que va dirigida la publicación.
    
     rosrun rqt_robot_steering rqt_robot_steering
+    
+  ![Rqt Teleoperacion:](rqt.png)
 
 ## Instalacion e Implementacion de YOLO para la Deteccion de Personas
  YOLO es básicamente un algoritmo de detección de objetos, es una red convolucional el cual predice múltiples cuadros delimitados. Yolo usa características de una imagen para predecir cada cuadro comparándolos con las clases que posee. YOLO divide una imagen en s x s celdas. En las que cada celda se encargara de predecir un objeto. Si el centro de ese objeto se encuentra en una celda de la cuadricula, esa celda será la responsable de la detección.
