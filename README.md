@@ -86,4 +86,11 @@ Para una correcta instalacion del robot Pepper se debe seguir los siguientes pas
 A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEUM junto con las Personas. 
 
     $roslaunch pepper_gazebo_plugin pepper_gazebo_plugin_museum.launch
- 
+    
+### Teleoperacion del Robot Pepper     
+   Rqt es una herramienta GUI principal para ROS. Este plugins que pueden ser configurado en cualquier configuración visual y cualquier número de vistas predefinidas. Para empezar ejecutamos el plugin Robot Steering. Lo que obtenemos es dos deslizadores, que representan la moción lineal y rotacional que queremos que tenga nuestro robot. En la parte superior del plugin, vemos una caja de texto con `/cmd_vel`. Alli pondremos `pepper/cmd_vel`. Representa el nombre del tema al que va dirigida la publicación.
+   
+    rosrun rqt_robot_steering rqt_robot_steering
+
+
+
