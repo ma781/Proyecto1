@@ -31,4 +31,37 @@ Las especificacion sobre el Robot Pepper se muestran en el siguiente link: [Pepp
 
 ### Dependencias
 
-Todo la implementacion se ejecuta bajo el Sistema Operativo Robotic Operating System ([ROS]), especificamente en ROS MELODIC. Por lo tanto, se necesita instalar el distro Melodic, el siguiente link lo ayudara con estos pasos. (http://wiki.ros.org/melodic/Installation/Ubuntu) .
+Todo la implementacion se ejecuta bajo el Sistema Operativo Robotic Operating System ([ROS]), especificamente en ROS MELODIC. Por lo tanto, se necesita instalar el distro Melodic, el siguiente link lo ayudara con estos pasos. (http://wiki.ros.org/melodic/Installation/Ubuntu).
+
+### Implementaciones
+Para una correcta instalacion del robot Pepper se debe seguir los siguientes pasos:
+ 
+ Instalar las prinipales Dependencias del Pepper
+ 
+    $sudo apt-get install ros-melodic-pepper-meshes
+    $sudo apt-get install ros-melodic-gazebo-ros-control
+    $sudo apt-get install ros-melodic-moveit*
+    $sudo apt-get install ros-melodic-tf2-sensor-msgs ros-melodic-ros-control ros-melodic-ros-controllers ros-melodic-gazebo-ros ros-melodic-gazebo-plugins ros-melodic-controller-manager python-wstool ros-melodic-gazebo*
+
+  Crear la carpeta principal 
+  
+    mkdir -p pepper_sim_ws/src
+    cd pepper_sim_ws/src
+    
+  Clonar los paquetes del Robot Pepper
+  
+      git clone -b correct_chain_model_and_gazebo_enabled https://github.com/awesomebytes/pepper_robot
+      git clone -b simulation_that_works https://github.com/awesomebytes/pepper_virtual
+      git clone https://github.com/awesomebytes/gazebo_model_velocity_plugin
+      git clone https://github.com/pal-robotics/ddynamic_reconfigure_python
+
+  Compilar el programa
+  
+     cd ..
+     catkin_make
+  
+  Luego de haber realizado es necesario modificar el archivo "bashrc"
+  
+    gedit ~/.bashrc
+    export ROS_PEPPER_SIM_WS=<path_to_your_pepper_sim_ws_folder>
+  
