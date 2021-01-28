@@ -27,7 +27,7 @@ Las especificacion sobre el Robot Pepper se muestran en el siguiente link: [Pepp
 
 
 
-## Instalacion
+## Instalacion e Implementacion del Robot Pepper
 
 ### Dependencias
 
@@ -92,5 +92,4 @@ A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEU
    
     rosrun rqt_robot_steering rqt_robot_steering
 
-
-
+## Instalacion e Implementacion de YOLO para la Deteccion de Personas
