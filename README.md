@@ -150,10 +150,12 @@ A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEU
   Para adaptar Yolo al Robot Pepper necesitamos cambiar el topico de la camara predeterminada por YOLO:
   
    * **`/camera_reading`** ([/pepper/camera/front/image_raw])
+   
   Las medidas de la cámara.
   
   ##### Topicos Published
   * **`object_detector`** ([/darknet_ros/found_object])
+  
     Publica el número de objetos detectados.
 
 * **`bounding_boxes`** ([/darknet_ros/bounding_boxes])
@@ -163,6 +165,7 @@ A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEU
 * **`detection_image`** ([/darknet_ros/detection_image])
 
     Publica una imagen de la imagen de detección que incluye el bounding boxes.
+
 
 
 Finalmente, luego de haber ejecutado el Pepper en un mundo, ejecutar YOLO 
