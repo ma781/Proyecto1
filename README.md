@@ -92,7 +92,7 @@ A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEU
    
     rosrun rqt_robot_steering rqt_robot_steering
     
-  ![Rqt Teleoperacion:](rqt_vel.jpg)
+  ![Rqt Teleoperacion:](rqt_vel2.jpg)
 
 ## Instalacion e Implementacion de YOLO para la Deteccion de Personas
  YOLO es básicamente un algoritmo de detección de objetos, es una red convolucional el cual predice múltiples cuadros delimitados. Yolo usa características de una imagen para predecir cada cuadro comparándolos con las clases que posee. YOLO divide una imagen en s x s celdas. En las que cada celda se encargara de predecir un objeto. Si el centro de ese objeto se encuentra en una celda de la cuadricula, esa celda será la responsable de la detección.
