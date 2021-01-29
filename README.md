@@ -87,6 +87,8 @@ A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEU
 
     $roslaunch pepper_gazebo_plugin pepper_gazebo_plugin_museum.launch
     
+ ![Simulacion del Robot Pepper:](Museo.png)
+    
 ### Teleoperacion del Robot Pepper     
    Rqt es una herramienta GUI principal para ROS. Este plugins que pueden ser configurado en cualquier configuración visual y cualquier número de vistas predefinidas. Para empezar ejecutamos el plugin Robot Steering. Lo que obtenemos es dos deslizadores, que representan la moción lineal y rotacional que queremos que tenga nuestro robot. En la parte superior del plugin, vemos una caja de texto con `/cmd_vel`. Alli pondremos `pepper/cmd_vel`. Representa el nombre del tema al que va dirigida la publicación.
    
@@ -98,6 +100,8 @@ A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEU
  YOLO es básicamente un algoritmo de detección de objetos, es una red convolucional el cual predice múltiples cuadros delimitados. Yolo usa características de una imagen para predecir cada cuadro comparándolos con las clases que posee. YOLO divide una imagen en s x s celdas. En las que cada celda se encargara de predecir un objeto. Si el centro de ese objeto se encuentra en una celda de la cuadricula, esa celda será la responsable de la detección.
  
  La informacion para YOLO se tomo de (https://github.com/Intelligent-Quads/iq_tutorials/blob/master/docs/intro_to_yolo.md)
+ 
+  ![Clasificador YOLO:](yolo.png)
  
  ### Implementacion de YOLO en ROS Melodic
  Primeramente se crea el directorio en donde se descargara YOLO, puede ser una nueva carpeta o sobre la carpeta `pepper_sim_ws`
@@ -171,6 +175,8 @@ A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEU
 Finalmente, luego de haber ejecutado el Pepper en un mundo, ejecutar YOLO 
 
      roslaunch darknet_ros darknet_ros.launch
+     
+ ![Deteccion de Personas con Robot Pepper:](yolo_pepper.png)     
   
   
   
