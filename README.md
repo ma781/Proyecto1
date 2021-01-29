@@ -13,6 +13,7 @@ Toda la Implementacion fue hecha en ROS Melodic and Ubuntu 18.04.
 
 
 **Autor: [Marcos Daza Guardamino],
+
 **Asesor: [Dennis Barrios Aranibar]
 
 **Affiliation: [Electrical and Electronics Engineering Department, School of Electronics and Telecommunications Engineering, Universidad Católica San Pablo, Arequipa-Peru]
