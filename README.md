@@ -97,6 +97,77 @@ A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEU
 ## Instalacion e Implementacion de YOLO para la Deteccion de Personas
  YOLO es básicamente un algoritmo de detección de objetos, es una red convolucional el cual predice múltiples cuadros delimitados. Yolo usa características de una imagen para predecir cada cuadro comparándolos con las clases que posee. YOLO divide una imagen en s x s celdas. En las que cada celda se encargara de predecir un objeto. Si el centro de ese objeto se encuentra en una celda de la cuadricula, esa celda será la responsable de la detección.
  
+ La informacion para YOLO se tomo de (https://github.com/Intelligent-Quads/iq_tutorials/blob/master/docs/intro_to_yolo.md)
  
+ ### Implementacion de YOLO en ROS Melodic
+ Primeramente se crea el directorio en donde se descargara YOLO, puede ser una nueva carpeta o sobre la carpeta `pepper_sim_ws`
  
+    sudo apt-get install -y gcc-6
+    mkdir -p catkin_ws/src
+    cd ~/catkin_ws/src/
  
+ #### Instalacion de Darknet_ros
+ 
+    git clone --recursive https://github.com/leggedrobotics/darknet_ros.git 
+    
+ Para maximizar el rendimiento, asegúrese de compilar en modo de lanzamiento. Puede especificar el tipo de compilación configurando o utilizando las herramientas de línea de comandos de Catkin
+ 
+    catkin_make -DCMAKE_BUILD_TYPE=Release
+ 
+ Darknet en la CPU es rápido (aproximadamente 1,5 segundos en una CPU Intel Core i7-6700HQ a 2,60 GHz × 8), pero es 500 veces más rápido en la GPU. Para eso se tiene que tener una GPU Nvidia y ademas instalar CUDA. CUDA es una plataforma de computación paralela y un modelo de interfaz de programación de aplicaciones (API) creado por Nvidia.
+ 
+     sudo apt install nvidia-cuda-toolkit
+     
+ #### Descargar Pesos (weight)
+   Los yolo-voc.weights y tiny-yolo-voc.weights se descargan automáticamente en el archivo CMakeLists.txt. Si se necesita descargarlos nuevamente, vaya a la carpeta de weight y descargue los dos pesos previamente entrenados del conjunto de datos de COCO:
+ 
+      cd catkin_workspace/src/darknet_ros/darknet_ros/yolo_network_config/weights/
+      wget http://pjreddie.com/media/files/yolov2.weights
+      wget http://pjreddie.com/media/files/yolov2-tiny.weights
+ 
+ #### Utilice sus propios objetos de detección
+  Para utilizar sus propios objetos de detección, debe proporcionar sus pesos y su archivo cfg dentro de los directorios:
+  
+         catkin_workspace/src/darknet_ros/darknet_ros/yolo_network_config/weights/
+         catkin_workspace/src/darknet_ros/darknet_ros/yolo_network_config/cfg/
+  
+  Además, se necesita crear un archivo de configuración para ROS donde define los nombres de los objetos de detección. Debe incluirlo dentro de: 
+  
+       catkin_workspace/src/darknet_ros/darknet_ros/config/
+  
+  Luego, el archivo `launch`, debe apuntar a su nuevo archivo de `config` en :
+  
+      <rosparam command="load" ns="darknet_ros" file="$(find darknet_ros)/config/your_config_file.yaml"/>
+      
+  Para que YOLO ROS: Detección de objetos, se ejecute con su robot en tiempo real para ROS, deberá adaptar algunos parámetros. Estos son específicamente los archivos de parámetros en `config` y el archivo `launch`.    
+  
+  #### Nodos 
+  YOLO utiliza las medidas de la cámara para detectar objetos previamente aprendidos en los fotogramas. En cuanto a parámetros relacionados con ROS, se puede cambiar los nombres y otros parámetros de los publishers y subscribers. Ademas en `ros.yaml` se puede elegir que detectara YOLO.
+  
+    darkned_ros/config/ros.yaml
+  
+  ##### Topicos Subscribed 
+  Para adaptar Yolo al Robot Pepper necesitamos cambiar el topico de la camara predeterminada por YOLO:
+  
+   * **`/camera_reading`** ([/pepper/camera/front/image_raw])
+  Las medidas de la cámara.
+  
+  ##### Topicos Published
+  * **`object_detector`** ([/darknet_ros/found_object])
+    Publica el número de objetos detectados.
+
+* **`bounding_boxes`** ([/darknet_ros/bounding_boxes])
+
+    Publica una matriz de cuadros delimitadores que proporciona información sobre la posición y el tamaño del cuadro delimitador en coordenadas de píxeles.
+
+* **`detection_image`** ([/darknet_ros/detection_image])
+
+    Publica una imagen de la imagen de detección que incluye el bounding boxes.
+
+
+Finalmente, luego de haber ejecutado el Pepper en un mundo, ejecutar YOLO 
+
+     roslaunch darknet_ros darknet_ros.launch
+  
+  
+  
