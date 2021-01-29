@@ -106,7 +106,7 @@ A continuacion, se va a lanzar o ejecutar al robot Pepper en el mundo ISCA MUSEU
     mkdir -p catkin_ws/src
     cd ~/catkin_ws/src/
  
- #### Instalacion de Darknet_ros
+ #### Instalacion de Darknet_ros 
  
     git clone --recursive https://github.com/leggedrobotics/darknet_ros.git 
     
